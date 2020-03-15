@@ -54,14 +54,26 @@ public class MovieController {
     }
 
     /**
-     * Updates the price of a movie searched by name and returns the movie
+     * Updates the price of a movie searched by name and returns the movie info
+     * in a String
      * @param name String name of the movie to be searched
      * @param price double new price value
-     * @return Movie value of the updated movie
+     * @return String containing the information of the movie updated
      */
     @RequestMapping("/update-price")
-    public Movie updateMoviePrice(@RequestParam String name, @RequestParam double price) {
+    public String updateMoviePrice(@RequestParam String name, @RequestParam double price) {
         Movie movie = movieService.updateMoviePrice(name, price);
-        return movie;
+        return "Updated: " + movie.toString();
+    }
+
+    /**
+     * Removes a movie searched by name and returns the movie info in a String
+     * @param name String name of the movie to be removed
+     * @return String containing the information of the movie removed
+     */
+    @RequestMapping("/remove")
+    public String removeMovie(@RequestParam String name) {
+        Movie movie = movieService.removeMovie(name);
+        return movie.toString();
     }
 }

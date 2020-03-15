@@ -50,11 +50,22 @@ public class MovieService {
      * Updates the price of a movie searched by name and returns the movie
      * @param name String name of the movie to be searched
      * @param price double new price value
-     * @return Movie value of the updated movie
+     * @return Movie movie updated
      */
     public Movie updateMoviePrice(String name, double price) {
         Movie movie = movieRepository.findByName(name);
         movie.setPrice(price);
         return movieRepository.save(movie);
+    }
+
+    /**
+     * Removes a movie searched by name and returns the Movie Object
+     * @param name String name of the movie to be removed
+     * @return Movie movie removed
+     */
+    public Movie removeMovie(String name) {
+        Movie movie = movieRepository.findByName(name);
+        movieRepository.delete(movie);
+        return movie;
     }
 }
