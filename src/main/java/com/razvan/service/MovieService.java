@@ -21,7 +21,7 @@ public class MovieService {
      * the movies from this collection.
      * @return List<Movie> all the movies in the collection movies
      */
-    public List<Movie> getAll() {
+    public List<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
 
@@ -30,10 +30,10 @@ public class MovieService {
      * @param name String name of the movie
      * @param price double price of the movie
      * @param length int length in minutes
-     * @param available boolean availability of the movie
+     * @param available boolean availability of the movie in the store
      * @return Movie prints the movie added
      */
-    public Movie add(String name, double price, int length, boolean available) {
+    public Movie addMovie(String name, double price, int length, boolean available) {
         return movieRepository.save(new Movie(name, price, length, available));
     }
 
@@ -44,5 +44,17 @@ public class MovieService {
      */
     public Movie findByName(String name) {
         return movieRepository.findByName(name);
+    }
+
+    /**
+     * Updates the price of a movie searched by name and returns the movie
+     * @param name String name of the movie to be searched
+     * @param price double new price value
+     * @return Movie value of the updated movie
+     */
+    public Movie updateMoviePrice(String name, double price) {
+        Movie movie = movieRepository.findByName(name);
+        movie.setPrice(price);
+        return movieRepository.save(movie);
     }
 }

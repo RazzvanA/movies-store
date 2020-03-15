@@ -24,8 +24,8 @@ public class MovieController {
      * @return List<Movie> all movies inside movie collection
      */
     @RequestMapping("")
-    public List<Movie> getAll() {
-        return movieService.getAll();
+    public List<Movie> getAllMovies() {
+        return movieService.getAllMovies();
     }
 
     /**
@@ -33,17 +33,35 @@ public class MovieController {
      * @param name String name of the movie
      * @param price double price of the movie
      * @param length int length in minutes of the movie
-     * @param available boolean availability in store of the movie
+     * @param available boolean availability of the movie in the store
      * @return Movie prints the movie added
      */
     @RequestMapping("/add")
-    public Movie add(@RequestParam String name, @RequestParam double price,
+    public Movie addMovie(@RequestParam String name, @RequestParam double price,
                      @RequestParam int length, @RequestParam boolean available) {
-        return movieService.add(name, price, length, available);
+        return movieService.addMovie(name, price, length, available);
     }
 
+    /**
+     * Searches for a movie by the name passed as parameter and returns
+     * the movie if it finds it
+     * @param name String name used to search for the movie
+     * @return Movie the movie matching the name parameter
+     */
     @RequestMapping("/name")
     public Movie findById(@RequestParam String name) {
         return movieService.findByName(name);
+    }
+
+    /**
+     * Updates the price of a movie searched by name and returns the movie
+     * @param name String name of the movie to be searched
+     * @param price double new price value
+     * @return Movie value of the updated movie
+     */
+    @RequestMapping("/update-price")
+    public Movie updateMoviePrice(@RequestParam String name, @RequestParam double price) {
+        Movie movie = movieService.updateMoviePrice(name, price);
+        return movie;
     }
 }
