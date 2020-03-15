@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface MovieRepository extends MongoRepository<Movie, String> {
 
     /**
-     * Searches a movie by the name attribute
+     * Custom repository method used to search a movie by its name
      * @param name String name of the movie
      * @return Movie movies with the name passed as parameter
      */
