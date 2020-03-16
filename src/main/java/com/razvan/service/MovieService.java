@@ -22,6 +22,7 @@ public class MovieService {
      * @return List<Movie> all the movies in the collection movies
      */
     public List<Movie> getAllMovies() {
+        System.out.println("MOVIES:*************************: " + movieRepository.findAll());
         return movieRepository.findAll();
     }
 
@@ -38,12 +39,21 @@ public class MovieService {
     }
 
     /**
-     * Searches for a movies which matches the name passed as parameter
+     * Searches for a Movie which matches the name passed as parameter
      * @param name String name of the move to search for
      * @return Movie movie matching the name parameter
      */
     public Movie findByName(String name) {
         return movieRepository.findByName(name);
+    }
+
+    /**
+     * Searching for a List<Movie> which matches the price passed as parameter
+     * @param price double price of the movie
+     * @return List<Movie> with the price passed in the parameter
+     */
+    public List<Movie> findByPrice(double price) {
+        return movieRepository.findByPrice(price);
     }
 
     /**

@@ -45,12 +45,23 @@ public class MovieController {
     /**
      * Searches for a movie by the name passed as parameter and returns
      * the movie if it finds it
-     * @param name String name used to search for the movie
-     * @return Movie the movie matching the name parameter
+     * @param name String name used to search for the Movie
+     * @return Movie matching the name parameter
      */
     @RequestMapping("/name")
-    public Movie findById(@RequestParam String name) {
+    public Movie findByName(@RequestParam String name) {
         return movieService.findByName(name);
+    }
+
+    /**
+     * Searches for all the movies that match the prices passed in the
+     * parameter
+     * @param price double price of the Movie
+     * @return List<Movie> matching the price parameter
+     */
+    @RequestMapping("/price")
+    public List<Movie> findByPrice(@RequestParam double price) {
+        return movieService.findByPrice(price);
     }
 
     /**
